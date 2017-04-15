@@ -1,0 +1,29 @@
+﻿@model Quiz
+
+@using EpamBlog.Helpers;
+@using EpamBlog.Models.QuizModels;
+
+
+@{
+    ViewBag.Title = "Quiz";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm( "GetResult", "Quiz", FormMethod.Post ))
+{
+
+    <input type='hidden' name='QuizId' value='@Model.Id' />
+    foreach (MultipleChoiceQuestion question in Model.MultypleQuestions)
+    {
+        @Html.CreateMultipleChoiceQuestion(question)
+    }
+
+    foreach (Textbox txtBox in Model.Textboxes)
+    {
+        @Html.CreateQuizTextbox(txtBox)
+    }
+    <button type="submit" name="formButton" class="formButton">Sent</button>
+}
+

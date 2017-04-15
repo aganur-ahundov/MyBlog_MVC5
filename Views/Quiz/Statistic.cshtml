@@ -1,0 +1,29 @@
+﻿@using EpamBlog.Models.QuizModels;
+
+@model IEnumerable<StatisticViewModel>
+
+
+@{
+    ViewBag.Title = "Statistic";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@foreach (StatisticViewModel stat in Model)
+{
+    <div class="statistic">
+        <h3>@stat.Title</h3>
+
+        @foreach (var dictionary in stat.Data)
+        {
+            <span class="answer-text">Variant <span class="key">@dictionary.Key</span> has chosen <span class="key">@Math.Floor(dictionary.Value * stat.PersentPerPoint)%</span></span> <br/>
+        }
+    </div>
+    
+}
+
+<div class="quiz-links">
+    @Html.ActionLink("Quiz #1", "Index/1")
+    @Html.ActionLink("Quiz #2", "Index/2")
+</div>
+

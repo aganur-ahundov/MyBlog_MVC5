@@ -1,0 +1,16 @@
+﻿@using EpamBlog.Models;
+@using EpamBlog.Helpers;
+
+@model IEnumerable<Article>
+
+    <div class="main-body">
+        @foreach (Article currentArticle in Model)
+        {
+            <div class="Article">
+                <h2> @currentArticle.Title </h2>
+                @Html.PrintArticle( currentArticle )
+                <p> @currentArticle.Published </p>
+            </div>
+        }
+    </div>
+    

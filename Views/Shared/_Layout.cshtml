@@ -1,0 +1,64 @@
+﻿@using EpamBlog.Helpers;
+@using EpamBlog.Models.QuizModels;
+@using EpamBlog.Models;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <div class="page-header" id="back-to-top">
+        <h3>@ViewBag.Title</h3>
+    </div>
+    <div class="container body-content">
+        <div class="menu-body">
+            <ul class="links">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Feedback", "Index", "Feedback")</li>
+                <li>@Html.ActionLink("Quiz", "Index", "Quiz")</li>
+                <li>@Html.ActionLink("Add Article", "Index", "Admin")</li>
+            </ul>
+                <div class="menu-body-quiz">
+                    @if (ViewBag.Statistic != null)
+                    {
+                        @Html.CreateMenuQuiz( ViewBag.Statistic as StatisticViewModel )
+                    }
+                    else if ( ViewBag.Radiobutton != null )
+                    {
+                        using ( Html.BeginForm( "GetAnswer", "Home", FormMethod.Post ) )
+                        {
+                            @Html.CreateSingleRadiobutton(ViewBag.Radiobutton as MultipleChoiceQuestion)
+                            <button type="submit" name="menu-form-button">Sent</button>
+                        }
+                    }
+                </div>
+            <div class="similar-articles">
+                @if (ViewBag.SimilarArticles != null)
+                {
+
+                    <h5>Similar articles</h5>
+                    <ul>
+                        @foreach (Article item in ViewBag.SimilarArticles)
+                        {
+                            <li>@Html.ActionLink( item.Title, "ReadArticle", "Home", new { id = item.Id } )</li>
+                        }
+                    </ul>
+
+                }
+            </div>
+
+        </div>
+        @RenderBody()
+        <footer>
+            <hr />
+            <p> Copyright &copy; @DateTime.Now.Year - MyBlog. All rights reserved.</p>
+            <a href="#back-to-top">Back to top</a>
+        </footer>
+    </div>
+    
+</body>
+</html>

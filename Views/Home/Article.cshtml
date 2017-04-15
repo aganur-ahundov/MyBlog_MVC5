@@ -1,0 +1,21 @@
+﻿@model EpamBlog.Models.Article
+
+@using EpamBlog.Models;
+@using EpamBlog.Helpers;
+
+@{
+    ViewBag.Title = "Article";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    @Html.PrintArticleWithFeedback( Model )
+    @foreach (Reply comment in Model.Comments)
+    {
+        @Html.PrintCommentsWithReplies(comment)
+    }
+   
+
+    @Html.Partial( "AddReply", Model )
+
+    <script src="~/Scripts/MyScript.js"></script>
+   

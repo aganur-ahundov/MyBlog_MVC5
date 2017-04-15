@@ -1,0 +1,29 @@
+﻿@using EpamBlog.Helpers;
+
+@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("AddArticle", "Admin", FormMethod.Post))
+{
+    <div class="popular-tags" >
+        <span>Most used tags: </span>
+        @foreach (string tag in Model)
+        {
+            <span>#@tag </span>
+        }
+    </div>
+
+    <div class="create-article-form">
+        @Html.CreateTextArea("Title", "Enter article title")
+        @Html.CreateTextArea("Text", "Enter article text")
+        @Html.CreateTextArea("Tags", "Enter article tags [#tag1 #tag2 #tag3...]")
+
+        <button>Create</button>
+    </div>
+
+}

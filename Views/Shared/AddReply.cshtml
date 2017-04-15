@@ -1,0 +1,13 @@
+﻿@model EpamBlog.Models.Article
+
+
+@using (Html.BeginForm( "AddReply", "Home", FormMethod.Post ))
+{
+    <input type="hidden" name="ArticleId" value="@Model.Id.ToString()"/>
+    <input type="hidden" name="ReplyId" value='null'/>
+    <div class="feedback-form" id="feedback-anchor">
+        <input type="text" name="Author" placeholder="Enter your name" />
+        <textarea name="Text" cols="40" rows="5" placeholder="Enter your feedback here"></textarea>
+        <button type="submit" name="sent-feedback">Sent</button>
+    </div>
+}
