@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
+using EpamBlog.ValidationAttributes;
 
 namespace EpamBlog.Models.QuizModels
 {
@@ -9,6 +9,7 @@ namespace EpamBlog.Models.QuizModels
     {
         public int Id { get; set; }
 
+        [MultipleQuestionValidation]
         public ICollection< MultipleChoiceAnswer > MultipleAnswers { get; set; }
 
         public ICollection<TextboxAnswer> QuizTextboxes { get; set; }

@@ -139,7 +139,7 @@ namespace EpamBlog.Models.Repository
 
 
 
-        public void SaveComplitedQuiz(CompletedQuiz _quiz)
+        public void SaveComplitedQuiz( CompletedQuiz _quiz )
         {
             _quiz.MultipleAnswers = _quiz.MultipleAnswers.Where(q => q.Answer != null).ToArray();
             _quiz.QuizTextboxes = _quiz.QuizTextboxes?.Where(q => q.Answer != null).ToArray();

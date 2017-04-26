@@ -1,0 +1,22 @@
+﻿@using EpamBlog.Helpers;
+@using EpamBlog.Models.QuizModels;
+
+@model StatisticViewModel
+
+
+
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        @Html.CreateMenuQuiz( Model as StatisticViewModel )
+    }
+    else if (ViewBag.Radiobutton != null)
+    {
+        @Html.ValidationSummary()
+            <div id="quiz-result">
+                @using ( Ajax.BeginForm("GetQuizResult", "Home", new AjaxOptions { UpdateTargetId = "quiz-result" } ) )
+                {
+                    @Html.CreateSingleRadiobutton(ViewBag.Radiobutton as MultipleChoiceQuestion)
+                    <button type="submit" name="menu-form-button">Sent</button>
+                }
+            </div>
+        }

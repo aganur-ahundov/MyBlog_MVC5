@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Web.Mvc;
 
 namespace EpamBlog.Models.QuizModels
 {
@@ -11,11 +10,11 @@ namespace EpamBlog.Models.QuizModels
         Checkbox,
         Radio
     }
-
+    
     public class MultipleChoiceQuestion
     {
         public int Id { get; set; }
-
+        
         public string QuestionText { get; set; }
 
         public MultipleQuestionType Type { get; set; }

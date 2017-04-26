@@ -23,6 +23,7 @@ namespace EpamBlog.Controllers
             ViewBag.Title = "MyBlog";
             
             ViewBag.Radiobutton = GetRandomRadiobutton();
+            ViewBag.IsHome = true;
             return View( repository.GetArticles() );
         }
         
@@ -35,16 +36,23 @@ namespace EpamBlog.Controllers
             return View( "Article",  newArticle );
         }
 
-
+        
         [HttpPost]
-        public ActionResult GetAnswer( MultipleChoiceAnswer _answer )
+        public ActionResult GetQuizResult( MultipleChoiceAnswer _answer )
         {
-            var st = new StatisticManager();
+            if( string.IsNullOrEmpty( _answer.Answer ) )
+            {
+                ModelState.AddModelError("", "You need to choose answer");
+                ViewBag.Radiobutton = GetRandomRadiobutton();
+                return PartialView( "StatisticPartialView", new StatisticViewModel() );
+            }
 
-            repository.AddAnswer( _answer ); 
-            ViewBag.Statistic = st.GetQuestionStatistic( repository.GetMultipleQuestion( _answer.QuestionId ) );
+            var sm = new StatisticManager();
 
-            return View( "Index", repository.GetArticles() ); 
+            repository.AddAnswer( _answer );
+            StatisticViewModel statisticView = sm.GetQuestionStatistic( repository.GetMultipleQuestion( _answer.QuestionId ) );
+
+            return PartialView( "StatisticPartialView", statisticView );
         }
 
 

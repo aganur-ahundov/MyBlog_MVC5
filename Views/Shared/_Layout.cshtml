@@ -8,7 +8,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css") 
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
 </head>
 <body>
     <div class="page-header" id="back-to-top">
@@ -17,37 +22,27 @@
     <div class="container body-content">
         <div class="menu-body">
             <ul class="links">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Feedback", "Index", "Feedback")</li>
-                <li>@Html.ActionLink("Quiz", "Index", "Quiz")</li>
-                <li>@Html.ActionLink("Add Article", "Index", "Admin")</li>
+                <li>@Html.ActionLink( "Home", "Index", "Home" )</li>
+                <li>@Html.ActionLink( "Feedback", "Index", "Feedback" )</li>
+                <li>@Html.ActionLink( "Quiz", "Index", "Quiz" )</li>
+                <li>@Html.ActionLink( "Add Article", "Index", "Admin" )</li>
             </ul>
+            @if ( ViewBag.IsHome != null )
+            {
                 <div class="menu-body-quiz">
-                    @if (ViewBag.Statistic != null)
-                    {
-                        @Html.CreateMenuQuiz( ViewBag.Statistic as StatisticViewModel )
-                    }
-                    else if ( ViewBag.Radiobutton != null )
-                    {
-                        using ( Html.BeginForm( "GetAnswer", "Home", FormMethod.Post ) )
-                        {
-                            @Html.CreateSingleRadiobutton(ViewBag.Radiobutton as MultipleChoiceQuestion)
-                            <button type="submit" name="menu-form-button">Sent</button>
-                        }
-                    }
+                    @Html.Partial( "StatisticPartialView", new StatisticViewModel() )
                 </div>
+            }
             <div class="similar-articles">
-                @if (ViewBag.SimilarArticles != null)
+                @if ( ViewBag.SimilarArticles != null)
                 {
-
                     <h5>Similar articles</h5>
                     <ul>
-                        @foreach (Article item in ViewBag.SimilarArticles)
+                        @foreach ( Article item in ViewBag.SimilarArticles )
                         {
-                            <li>@Html.ActionLink( item.Title, "ReadArticle", "Home", new { id = item.Id } )</li>
+                            <li>@Html.ActionLink( item.Title, "ReadArticle/" + item.Id, "Home" )</li>
                         }
                     </ul>
-
                 }
             </div>
 
@@ -59,6 +54,6 @@
             <a href="#back-to-top">Back to top</a>
         </footer>
     </div>
-    
+    @RenderSection("Scripts", false)
 </body>
 </html>

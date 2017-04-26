@@ -98,7 +98,6 @@
     margin-top: 50px;
     background: url('img/article_background1.jpg');
     font-family: 'bebas_neueregular';
-    /*border: 2px solid #95928E;*/
     border-radius: 7px;
     text-align: center;
 }
@@ -132,7 +131,6 @@
 
 footer {
     text-align: center;
-    /*position: absolute;*/
     bottom: 0;
     width: 100%;
 }
@@ -203,6 +201,46 @@ footer a {
 }
 
 
+.feedback-container a {
+    margin: 0px 18px;
+    padding: 6px;
+    font-size: 22px;
+    font-family: 'bebas_neueregular';
+    text-decoration: none;
+    color: black;
+    background-color: #BCCCCC;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.feedback-container a:hover{
+    background-color: darkcyan;
+}
+
+
+.back-to-list-link
+{
+    margin: 28px 18px;
+    }
+
+ 
+.back-to-list-link a
+{
+    
+    padding: 6px;
+    font-size: 22px;
+    font-family: 'bebas_neueregular';
+    text-decoration: none;
+    color: black;
+    background-color: #BCCCCC;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.back-to-list-link a:hover{
+    background-color: darkcyan; 
+}
+
 /*QUESTIONNAIRE STYLES*/
 
 .questionText {
@@ -217,7 +255,7 @@ footer a {
 }
 
 .formButton {
-    margin: 25px 150px;
+    margin: 25px 73px;
     padding: 10px;
     width: 107px;
     font-size: 16px;
@@ -236,8 +274,9 @@ footer a {
 /*STATISTIC STYLES*/
 
 .statistic {
-    margin: 30px 73px;
-    width: 40%;
+    margin: 7px auto !important;
+    margin-top: 1px !important;
+    padding-top: 1px !important;
 }
 
 .statistic span {
@@ -322,3 +361,26 @@ footer a {
     padding-top: 13px;
 }
 
+
+/*VALIDATION STYLES*/
+.validation-summary-valid{
+    margin: 0 !important;
+    padding: 1px !important;
+}
+
+.validation-summary-errors{
+    margin: 0px !important;
+    padding: 1px !important;
+    height: 30px;
+    color: red;
+}
+
+.quiz-validation-errors li{
+    margin-left: 3%;
+    color: black;   
+}
+
+#quiz-result{
+    margin: 0px !important;
+    padding: 1px !important;
+}

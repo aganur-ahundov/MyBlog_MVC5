@@ -9,11 +9,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<div class="quiz-validation-errors">
+    @Html.ValidationSummary( true )
+</div>
 
 @using (Html.BeginForm( "GetResult", "Quiz", FormMethod.Post ))
 {
-
     <input type='hidden' name='QuizId' value='@Model.Id' />
     foreach (MultipleChoiceQuestion question in Model.MultypleQuestions)
     {
